@@ -28,8 +28,42 @@ Sahatrix is a private, multi-domain integration control plane that automates cro
 * **Predictable AI:** LLMs belong behind deterministic guardrails. Schema-validated model outputs and strict type safety are mandatory for enterprise workloads.
 * **Latency Matters:** Having optimized real-time Forex trading platforms from 5s down to 300ms, I evaluate AI data pipelines through a lens of raw performance and mechanical sympathy.
 
----
+### 📐 Architectural Topology
 
+```mermaid
+graph TD
+    %% Styling
+    classDef client fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef control fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
+    classDef agent fill:#ede7f6,stroke:#5e35b1,stroke-width:2px;
+    classDef storage fill:#efebe9,stroke:#5d4037,stroke-width:2px;
+
+    %% Components
+    A[Third-Party Product / OpenAPI Spec] -->|Contract Ingestion| B(Spring Boot API Facade)
+    
+    subgraph Control Plane [Fail-Closed Control Plane]
+        B -->|Secure Route / AuthN / AuthZ| C{FastAPI Orchestration Runtime}
+        C -->|1. Request Map Proposal| D[Product Manager Agent]
+        C -->|2. Verify Type Validation| E[Playtest Operator Agent]
+        C -->|3. Compile Metrics & Output| F[Demo Producer Agent]
+    end
+
+    subgraph Security Boundary [Deterministic Evaluation Boundary]
+        D & E & F -->|Schema-Validated JSON Output| G[Tenant Rules Engine]
+        G -->|Actionable Map Proposal| H((Human Operator Approval Path))
+    end
+
+    %% State Persistance & Writing
+    H -->|Approved| I[Immutable Audit Trail & Ledger]
+    H -->|Rejected / Unapproved| J[Fail-Closed Circuit Break / Log Drop]
+    I -->|Write State| K[(PostgreSQL Domain Storage)]
+    
+    %% Assign Styles
+    class A client;
+    class B,C control;
+    class D,E,F agent;
+    class G,H,I,J,K storage;
+```
 ## 🤝 Let's Connect
 The Sahatrix repository is hosted in a private enterprise account. I routinely host private, live architecture walkthroughs and system code reviews for engineering leaders, CTOs, and peer architects. 
 
